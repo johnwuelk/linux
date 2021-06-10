@@ -1,7 +1,7 @@
 How to install proprietary Broadcom wireless card driver to connect to the Internet through Wi-Fi in Debian
 thanks to https://www.youtube.com/watch?v=JW0f3NOjWys
 
-Based on my BCM4313 in Lenovo N581. wicd refused to work!
+wicd does NOT work with non-free wifi drivers like the one in my Lenovo n581 (BCM4313).
 
 Supported Broadcom wireless network cards: 
 BCM4311-, BCM4312-, BCM4313-, BCM4321-, BCM4322-, BCM43142-, BCM43224-, BCM43225-, BCM43227-, BCM43228-, BCM4331-, BCM4360-, and BCM4352-
