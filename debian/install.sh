@@ -2,7 +2,9 @@
 
 apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi
 
-#usermod -aG sudo $USER
+#usermod -aG sudo johann
+#groupadd wheel
+#usermod -aG wheel johann
 
 apt update
 apt install ibus-m17n 
