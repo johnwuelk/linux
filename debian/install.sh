@@ -1,12 +1,14 @@
 #!/bin/bash
 
-apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi terminator xterm 
+apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi terminator xterm
 
 #for TUI display manager: https://github.com/nullgemm/ly
 
 #usermod -aG sudo johann
 #groupadd wheel
 #usermod -aG wheel johann
+
+Chrome browser: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 apt update
 apt install ibus-m17n 
