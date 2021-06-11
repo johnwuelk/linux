@@ -1,6 +1,8 @@
 #!/bin/bash
 
-apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi
+apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi terminator xterm 
+
+#for TUI display manager: https://github.com/nullgemm/ly
 
 #usermod -aG sudo johann
 #groupadd wheel
