@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi terminator xterm lm-sensors
+apt install wireless-tools network-manager wpasupplicant xorg git nnn i3 vim acpi terminator xterm lm-sensors htop
 
 #for TUI display manager: https://github.com/nullgemm/ly
 
