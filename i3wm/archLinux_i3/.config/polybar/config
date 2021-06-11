@@ -1,0 +1,311 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+
+;background = #fff
+;foreground = #000
+foreground = ${xrdb:fg}
+background = ${xrdb:bg}
+
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
+
+[bar/bar]
+enable-ipc=true
+height = 20
+width = 100%
+offset-x = 1%
+padding-right = 35 
+padding-left = 5
+;bottom = true
+radius-bottom = 15
+
+background = ${colors.background}
+;background = ${colors.primary}
+foreground = ${colors.foreground}
+;border-size = 10
+border-top-size = 0
+border-bottom-size = 0
+border-color = #0000
+
+line-size = 2
+
+;default... tray-background = ${colors.background}
+tray-detached = true
+tray-position = right
+tray-padding = 5
+tray-offset-x = -40
+
+font-0=SF Pro Display:style=Regular:size=12;2
+font-1=SF Pro Display:style=Semibold:size=10;2
+font-2=Material Design Icons:size=13;4
+font-3=font\-logos:size=10;2
+font-4=Font Awesome 5 Free Solid:size=10;3
+font-5=IPAGothic:size=11;3
+
+modules-right = temperature pulseaudio time powermenu
+
+; i3
+modules-left = launcher i3 xwindow
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+wm-restack = i3
+
+;                      _       _           
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+                                         
+[module/launcher]
+type=custom/text
+content = 
+content-margin = 4
+click-left = ~/.scripts/rofiLaunch.sh 
+;The script above is to be found here : https://github.com/ngynLk/scripts
+
+[module/updates]
+type=custom/script
+exec = yay -Qu | wc -l
+exec-if = [[ $(yay -Qu | wc -l) != 0 ]]
+format =   <label> update(s) available.
+format-margin = 8
+tail = true
+interval = 30
+click-left = urxvt -e yay -Syu
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:75:...%
+label-empty = Empty 
+label-empty-font = 2
+label-font = 2
+format-margin = 4
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-margin = 4
+index-sort = true
+
+enable-click = true
+reverse-scroll = false
+
+label-focused = %index%
+label-focused-underline = ${colors.foreground}
+label-focused-padding = 4
+label-focused-font = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+label-urgent = !
+label-urgent-padding = 5
+label-urgent-underline = ${colors.background}
+label-urgent-font = 2
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state>
+format-margin = 4
+index-sort = true
+
+enable-click = true
+reverse-scroll = false
+enable-scroll = true
+
+label-focused = %index%
+label-focused-underline = ${colors.foreground}
+label-focused-padding = 5
+label-focused-font = 2
+
+label-empty =
+
+label-urgent = 
+label-urgent-padding = 5
+
+label-occupied = %index%
+label-occupied-padding = 5
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected =  <label-connected>
+label-connected = %essid%
+label-connected-color1 = ${colors.color1}
+
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+label-disconnected-color1 = ${colors.color1}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-color1 = ${colors.color1}
+
+[module/time]
+type = internal/date
+interval = 10
+format-margin = 0
+
+time = "%I:%M"
+date = "%A %d %b"
+
+label = %time% | %date%
+label-background = ${colors.background}
+label-padding = 0
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-margin = 2
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage:4:4%%
+format-volume-background = ${colors.background}
+format-volume-padding = 5
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+
+label-muted = " mute"   
+label-muted-background = ${colors.background}
+label-muted-padding = 5
+
+[module/mpd]
+type = custom/script
+exec = mpc status
+format-margin = 4
+format = "    <label>"
+label = %output:1:65:...%
+tail = true
+interval = 1
+click-left = mpc toggle
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+interval = 0.5
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
+base-temperature = 20
+warn-temperature = 80
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-color1 = ${colors.color1}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-margin = 9
+format-spacing = 2
+
+label-open = %{T5}
+label-close = X
+label-separator = |
+
+; reboot
+menu-0-1 = Reboot 
+menu-0-1-exec = menu-open-2
+; poweroff
+menu-0-2 = Poweroff
+menu-0-2-exec = menu-open-3
+; logout
+menu-0-0 = Logout
+menu-0-0-exec = menu-open-1
+
+menu-2-0 = Reboot
+menu-2-0-exec = systemctl reboot
+
+menu-3-0 = Poweroff
+menu-3-0-exec = systemctl poweroff
+
+menu-1-0 = Exit
+menu-1-0-exec = i3-msg exit || openbox --exit
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight 
+
+; Create scroll handlers used to set the backlight value
+; Default: true
+enable-scroll = true
+format = <ramp>
+label = %percentage%%
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+[module/spotify]
+type = custom/script
+format-margin = 4
+format =    <label>
+exec = playerctl metadata --format '{{artist}}: {{title}}'
+tail = true
+interval = 1
+click-left = "playerctl play-pause"
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+                      

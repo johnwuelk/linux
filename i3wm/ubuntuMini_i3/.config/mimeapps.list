@@ -1,0 +1,29 @@
+[Added Associations]
+text/plain=vim.desktop;
+image/png=feh.desktop;chromium_chromium.desktop;
+text/x-readme=vim.desktop;
+application/x-theme=vim.desktop;panel-desktop-handler.desktop;
+image/svg+xml=inkscape.desktop;chromium_chromium.desktop;
+font/ttf=fontforge.desktop;
+text/html=chromium_chromium.desktop;
+application/zip=xarchiver.desktop;
+application/x-shellscript=vim.desktop;
+application/x-bzip-compressed-tar=xarchiver.desktop;
+image/jpeg=feh.desktop;
+video/mp4=smplayer.desktop;smplayer_enqueue.desktop;
+application/pdf=inkscape.desktop;okularApplication_pdf.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=openoffice4-writer.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=openoffice4-calc.desktop;
+application/x-xz-compressed-tar=xarchiver.desktop;
+application/vnd.oasis.opendocument.text=openoffice4-writer.desktop;okularApplication_ooo.desktop;
+application/msword=openoffice4-writer.desktop;
+video/x-matroska=smplayer_enqueue.desktop;
+video/x-msvideo=smplayer_enqueue.desktop;
+text/x-nfo=vim.desktop;
+application/vnd.oasis.opendocument.spreadsheet=openoffice4-calc.desktop;
+
+[Default Applications]
+image/png=feh.desktop
+inode/directory=Thunar.desktop
+application/x-gnome-saved-search=thunar.desktop
+video/mp4=smplayer.desktop

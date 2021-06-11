@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# my first bash script:)))
+# What it does: If Dict App is not running, start it, if it's running, raise it's window!
+
+if [[ `xdotool search --name "Online Dictionaries"` == "" ]]; then
+    cd ~/IdeaProjects/OnlineDictionaries/ #IMPORTANT! to work!
+	OnlineDictJar="java -jar out/artifacts/OnlineDictionaries/OnlineDictionaries.jar &"
+	eval "$OnlineDictJar"
+else
+    if [[ `xdotool getactivewindow getwindowname` != *"Dictionaries"* ]]; then
+        xdotool search --name "Online Dictionaries" windowactivate;
+    else
+        xdotool search --name "Online Dictionaries" windowminimize;
+    fi
+fi

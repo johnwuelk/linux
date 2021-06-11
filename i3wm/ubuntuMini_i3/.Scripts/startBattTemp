@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pkill -f Battery_and_Temp
+~/.Scripts/Battery_and_Temp_Warner.sh

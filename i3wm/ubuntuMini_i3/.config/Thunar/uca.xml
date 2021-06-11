@@ -1,0 +1,58 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1596779652378846-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Samba Public Read Only</name>
+	<unique-id>1597705310551116-1</unique-id>
+	<command>net usershare add %n %f &quot;&quot; Everyone:R guest_ok=y</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Samba Public Writeable</name>
+	<unique-id>1597705409326975-1</unique-id>
+	<command>net usershare add %n %f &quot;&quot; Everyone:F guest_ok=y &amp;&amp; chmod 777 %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Samba Private Read Only</name>
+	<unique-id>1597705503386759-2</unique-id>
+	<command>net usershare add %n %f &quot;&quot; Everyone:R guest_ok=n</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>emblem-ubuntuone-updating</icon>
+	<name>Samba Private Writeable</name>
+	<unique-id>1597706250523287-6</unique-id>
+	<command>net usershare add %n %f &quot;&quot; Everyone:F guest_ok=n &amp;&amp; chmod 777 %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Samba Share Remove</name>
+	<unique-id>1597705582263002-4</unique-id>
+	<command>net usershare delete %n &amp;&amp; chmod 755 %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>
