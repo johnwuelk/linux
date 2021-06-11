@@ -1,4 +1,5 @@
-#add following to the end of /etc/bash.bashrc:
+#add this to the end of /etc/bash.bashrc
+# cat bash.bashrc_suffix >> /etc/bash.bashrc 
 
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
