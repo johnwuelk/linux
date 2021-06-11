@@ -3,6 +3,9 @@ find out bluetooth model/driver:
 output f.i.: BCM20702A1-0b05-17cb
 get .hcd file of exact above output from https://github.com/winterheart/broadcom-bt-firmware
 and put it in /lib/firmware/brcm
+
+or get Windows driver and convert from .hex to .hcd via hex2hcd https://github.com/jessesung/hex2hcd.git
+
 -> reboot and enjoy with pulseaudio-bluetooth (if alsa is installed, pulseaudio has to be run first for bluetooth to work!)
 pulseaudio-module-bluetooth has to be installed
 pulseaudio -k
