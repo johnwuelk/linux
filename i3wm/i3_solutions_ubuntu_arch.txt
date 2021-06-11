@@ -1,0 +1,200 @@
+Ubuntu Minimal and i3
+
+Brightness Screen / Backlight:
+if things like xandr don't work install and use brightnessctl
+
+Add to installs at the beginning:
+sudo apt install software-properties-common
+
+touchpad enable tapping(tippen):
+apt remove xserver-xorg-input-synaptics
+apt install xserver-xorg-input-libinput
+if not already present: mkdir /etc/X11/xorg.conf.d
+cp /usr/share/X11/xorg.conf.d/40-libinput.conf /etc/X11/xorg.conf.d/
+folder /etc/X11/xorg.conf.d must only have the 40-.... file
+in file 40-... under touchpad settings...
+add the following 2 lines below driver "libinput":
+Option "Tapping" "on"
+Option "NaturalScrolling" "true"
+enable/disable touch via "xinput" command
+
+Cursor themes: https://www.gnome-look.org/browse/cat/107/ord/rating/
+lxappearance
+
+For i3-gaps:
+sudo add-apt-repository ppa:kgilmer/speed-ricer
+sudo apt-get update #or just "apt install i3-gaps"
+
+SOUND:
+test sound f.i.  with
+aplay /usr/share/sounds/alsa/Front_Right.wav
+Sund problems:
+For sound to work, add user to audio group:
+adduser john audio
+Install pavucontrol
+Select the "Playback" menu and make sure that you have it set to Show Applications
+
+Add to line "load-module module-stream-restore" in /etc/pulse/default.pa: 
+load-module module-stream-restore restore_device=false
+killall pulseaudio
+=> restart chrome or whatever program not outputing sound
+
+or the following commands:
+killall pulseaudio
+rm -r ~/.config/pulse/*
+rm -r ~/.pulse*
+=> reboot
+
+-------------
+Microphone not working: easy - check in PAVUCONTROL
+Configuration should be set to Analog Stero Duplex in order for microphone to show in the first place. Input Devices should list Microphone, play around with "Lock Channels" and "Set as fallback". These options are crucial for microphone to work or not. Also play around with alsamixer.
+Test microphone:
+arecord -f cd -d 10 /tmp/test-mic.wav
+aplay /tmp/test-mic.wav
+------------
+Internal microphone not working
+Make sure volume is enabled under 'Capture' view in alsamixer.
+alsamixer: If 'Internal Microphone' is not displayed, press F4 then navigate to it and toggle it on (Space button).
+command 'alsamixer -c 0' could make it appaear whereas 0 is sound card number, 'aplay -l' displays the card numbers.
+More details/info at https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture/Troubleshooting 
+-------------------------
+-------------------------
+SCREEN BRIGHTNESS Control:
+install brightnessctl
+IMPORTANT: user has to be in video group in order to work without root permissions:
+sudo usermod -a -G video $USER
+Then REBOOT is required in order to take effect
+-------------------------
+-------------------------
+
+Get polybar working on ubuntu:
+sudo apt-get install cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
+
+git clone https://github.com/jaagr/polybar.git
+
+cd polybar && ./build.sh
+
+---------
+---------
+find out classname of program for compton via 'xprop'
+
+to find out right X11 keycode of key, type: xev
+then type key or key combination (like Fn+F6) in the popup window.
+---------
+---------
+Troubleshooting
+If after reboot tty is shown instead of display manager/GUI:
+Simply revert any changes made in /etc/X11/xorg...
+This folder is very sensitive
+---------
+---------
+Thunar Enable mount filesystem/partition:
+change "auth_admin_keep" to "yes" under "mount a file system"
+in file /usr/share/polkit-1/actions/org.freedesktop.UDisks2.policy
+---------
+---------
+set global alias in /etc/bash.bashrc
+alias updateAllandClear='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove'
+---------
+Power Button:
+first disable power button (systemd):
+activate
+HandlePowerKey=ignore
+inside
+/etc/systemd/logind.conf
+then bind key in i3 (code found out via xev):
+bindsym XF86PowerOff exec "~/.Scripts/power.sh"
+---------
+If wifi does not activate by itself on startup:
+sudo rfkill unblock wifi; sudo rfkill unblock all
+to check that the card has been unblocked rerun:
+sudo rfkill list
+----
+additionally on asus hardware:
+append "options asus_nb_wmi wapf=1" in /etc/modprobe.d/asus-wifi.conf
+if file does not exist, create it.
+---------
+To remove PPA, simply delete corresponding file
+sudo rm -i /etc/apt/sources.list.d/PPA...
+---------
+---------
+Printer Driver HP
+the following packages should be installed
+check via dpkg -p | grep ...
+Main packages:
+hplip
+cups
+
+The main packages should install the following ones, if printing doesn't work and some of them are missing, try installing them manually:
+hplip-data, libhpmud0:amd64, libsane-hpaio:amd64, printer-driver-hpcups, printer-driver-postscript-hp, cups, cups-browsed, cups-bsd, cups-client, cups-common, cups-core-drivers, cups-daemon, cups-filters, cups-filters-core-drivers, cups-ipp-utils, cups-pk-helper, cups-ppdc, cups-server-common, libcups2:amd64, libcups2:i386, libcupscgi1:amd64, libcupsfilters1:amd64, libcupsimage2:amd64, libcupsmime1:amd64, libcupsppdc1:amd64, printer-driver-cups-pdf, printer-driver-hpcups, python3-cups, python3-cupshelpers, cups-core-drivers, cups-filters-core-drivers, ippusbxd, libchromaprint1:amd64, libgutenprint2, libqt5printsupport5:amd64, printer-driver-cups-pdf, printer-driver-gutenprint, printer-driver-hpcups, printer-driver-postscript-hp, python3-cupshelpers, samba, system-config-printer, system-config-printer-common, system-config-printer-udev
+-------------------
+-------------------
+If Ubuntu too slow and too hot after suspend and resume:
+sudo apt-get install msr-tools
+sudo modprobe msr
+sudo rdmsr -a 0x19a
+
+If rdmsr does not give back 0 then:
+sudo wrmsr -a 0x19a 0x0
+
+RELIABLE:
+install TLP, thermald. Tlp is for optimizing battery life and CPU performance.
+modify /etc/tlp.conf or /etc/default/tlp for own needs and restart service. check documentation for further info at linrunner.de!
+
+LESS RELIABLE:
+Check if machine is running on performance or powersave:
+install linux-tools-common, cpufrequtils and maybe more needed dependencies
+cpufreq-info (f.i. "current policy...the governor "powersave" may decide which speed to use..." means it is NOT on performance)
+If above command does not work: sudo cpupower frequency-info 
+sudo cpupower frequency-set -g performance (set it to performance and check again with above command)
+
+DISABLE Secure-Boot in BIOS for faster booting and hibernation if needed.
+
+-------------------
+-------------------
+Playonlinux / wine MS Office 2013, PDF xChangeEditor, etc.
+install everything via Playonlinux (NOT WINE), make sure anything Forms/.NET and any language options in installer is selected.
+in "Configure Wine":
+- Windows Version should be XP, not higher
+- under libraries add msftedit, riched20, riched30, riched32, vbscript or vb6run
+- set riched20 to only native (which should fix powerpnt issues)
+Troubleshooting:
+- Solution 1: Run in an emulated virtual desktop. This is probably the easiest solution for most users.
+- Solution 2: Uncheck "Allow the window manager to control the windows" under Graphics in wine config. The downside is that Powerpoint will no longer show up in the taskbar.
+Not sufficient memory/disk/ font error:
+copy microsoft fonts into corresponding virtual drive (install ttf-mscorefonts-installer):
+sudo cp /usr/share/fonts/truetype/msttcorefonts/* ~/.PlayOnLinux/wineprefix/Office2013/drive_c/windows/Fonts
+Or try with symbolic link to save space.
+--------
+Create link in file browser for easier access to home files:
+ln -s target source
+ln -s /home/do/ .PlayOnLinux/wineprefix/Office2013/drive_c/users/do/Favorites/HOME
+--------
+Shortcuts to applications are saved in .PlayOnLinux/shortcuts/
+--------
+If MSOffice should expire first try serial from serials.ws: 72RN3-HB2JJ-K9RF8-YVB3Q-628P9 or JNK2K-PJC3D-Y7DDR-J33RY-MY29K
+-------------------
+-------------------
+Troubleshooting if update fails:
+"...repository ... does not have a Release file."
+Remove impeding ppa from /etc/apt/sources.list.d/ 
+-------------------
+-------------------
+Autostart applications in LXDE:
+desktop files of those applications in ~/.config/autostart, and they will get executed when the session starts. To use the lxsession autostart way, add a line with an @ followed by the command to be run to your ~/. config/lxsession/<profile>/autostart file.
+-------------------
+-------------------
+Power management via xfce4-power-manager:
+for screen lock to use i3lock modify or create /usr/local/bin/xflock4 because this is the file that xfce4-power-manager calls.
+f.i. write "i3lock-fancy" in file.
+Remove xscreensaver if installed!
+-------------------
+-------------------
+Trying to show symbols in polybar (on arch):
+yay -Ss siji-git unifont-utils ttf-unifont
+-------------------
+-------------------
+list bindings of keys to virtual modifier names (for example Mod1 for Alt-Key, etc.):
+xmodmap
+-------------------
+-------------------
