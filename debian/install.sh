@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi terminator xterm lm-sensors htop rsync 
-ntfs-3g ibus-m17n omegat trash-cli
+ntfs-3g ibus-m17n omegat trash-cli xdotool
 #for TUI display manager: https://github.com/nullgemm/ly
 
 usermod -aG sudo johann
