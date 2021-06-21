@@ -4,6 +4,10 @@ apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3
 ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip libnotify-bin zip w3m lynx
 #for TUI display manager: https://github.com/nullgemm/ly
 
+#Wichtig: Dieses Paket entfernen (wichtig mit --purge), damit Grafik besser
+#funktioniert. Getestet mit  LenovoN581 - keine Verzerrungen mehr:
+apt remove --purge xserver-xorg-video-intel
+
 usermod -aG sudo johann
 groupadd wheel
 usermod -aG wheel johann
