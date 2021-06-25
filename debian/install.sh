@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi terminator xterm lm-sensors htop rsync 
-ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen
+ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen cava
 #for TUI display manager: https://github.com/nullgemm/ly
 
 #Wichtig: Dieses Paket entfernen (wichtig mit --purge), damit Grafik besser
@@ -24,7 +24,8 @@ cp ../geez_ethiopic/am-sera.mim /usr/share/m17n/am-sera.mim
 mv /etc/default/locale /etc/default/locale_OLD
 cat ./locale > /etc/default/locale
 
-#compositor 'PICOM' (descendant of 'compton'):
+#compositor 'PICOM' (descendant of 'compton')
+#thanks to https://www.linuxfordevices.com/tutorials/linux/picom
 apt install cmake meson git pkg-config asciidoc libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev  libpcre2-dev  libevdev-dev uthash-dev libev-dev libx11-xcb-dev
 git clone https://github.com/jonaburg/picom
 cd picom
