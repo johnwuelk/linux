@@ -46,4 +46,6 @@ cd cava
 make
 sudo make install
 
+#regarding nnn wallpaper plugin: don't have nitrogen installed. see readme of nnn on MEGA for more info.
+
 
