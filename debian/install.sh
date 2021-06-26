@@ -1,7 +1,6 @@
 #!/bin/bash
 
-apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi xfce4-terminal xterm lm-sensors htop rsync 
-ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen cava
+apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi xfce4-terminal xterm lm-sensors htop rsync ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen ncmpcpp mpd
 #for TUI display manager: https://github.com/nullgemm/ly
 
 #Wichtig: Dieses Paket entfernen (wichtig mit --purge), damit Grafik besser
@@ -35,3 +34,16 @@ ninja -C build
 sudo ninja -C build install
 #run picom
 picom --config ~/.config/picom/picom.conf --experimental-backends -b
+
+
+#cava visualizer
+apt install libfftw3-dev libasound2-dev libncursesw5-dev libpulse-dev libtool automake libiniparser-dev
+export CPPFLAGS=-I/usr/include/iniparser
+https://github.com/karlstav/cava.git
+cd cava
+./autogen.sh
+./configure
+make
+sudo make install
+
+
