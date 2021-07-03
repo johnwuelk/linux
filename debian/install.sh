@@ -3,6 +3,9 @@
 apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi xfce4-terminal xfce4-power-manager xterm lm-sensors htop rsync ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen ncmpcpp mpd mpc feh faketime
 #for TUI display manager: https://github.com/nullgemm/ly
 
+#fuer laptops:
+apt install tlp
+
 #Wichtig: Dieses Paket entfernen (wichtig mit --purge), damit Grafik besser
 #funktioniert. Getestet mit  LenovoN581 - keine Verzerrungen mehr:
 apt remove --purge xserver-xorg-video-intel
