@@ -1,0 +1,2 @@
+in MEGAsync App
+REMOVE ".*" from excluded file list (settings -> advanced), so that hidden files/ dotfiles are synced as well!
