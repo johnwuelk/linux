@@ -1,0 +1,11 @@
+Add following in /etc/X11/xorg.conf.d/20-intel.conf (if not present, create it) and restart:
+
+Section "Device"
+    Identifier  "Intel Graphics" 
+    Driver      "intel"
+    Option      "Backlight"  "intel_backlight"
+EndSection
+
+
+Reason: ACPI backlight is used instead of intel_backlight. this forces intel_backlight to be used.
+brightness can then be set via xbacklight app
