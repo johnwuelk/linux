@@ -15,6 +15,8 @@ groupadd wheel
 usermod -aG wheel johann
 #so that brightnessctl works without root:
 usermod -aG video jo
+#so that I can mount devices without root (for nnn):
+usermod -aG plugdev jo
 
 Chrome browser: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
