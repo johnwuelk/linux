@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi xfce4-terminal xfce4-power-manager xterm lm-sensors htop rsync ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip xsel libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen ncmpcpp mpd mpc feh faketime mpv qalc cmatrix xprintidle
+apt install wireless-tools network-manager nm-tray wpasupplicant xorg git nnn i3 vim acpi xfce4-terminal xfce4-power-manager xterm lm-sensors htop rsync ntfs-3g ibus-m17n omegat trash-cli xdotool openjfx zenity yad xclip xsel libnotify-bin zip w3m lynx neofetch scrot zathura wkhtmltopdf pmount udisks2 imagemagick nitrogen ncmpcpp mpd mpc feh faketime mpv qalc cmatrix xprintidle fonts-crosextra-carlito fonts-crosextra-caladea ttf-mscorefonts-installer
 #for TUI display manager: https://github.com/nullgemm/ly
 
 #fuer laptops:
