@@ -54,8 +54,8 @@ sudo make install
 #regarding nnn wallpaper plugin: don't have nitrogen installed. see readme of nnn on MEGA for more info.
 
 # rofi-calc # calculator for currencies, equations, units and much more
+sudo apt install dh-autoreconf rofi-dev qalc libtool
 git clone https://github.com/svenstaro/rofi-calc.git
-sudo apt install rofi-dev qalc libtool qalculate
 cd rofi-calc
 autoreconf -i
 mkdir build
