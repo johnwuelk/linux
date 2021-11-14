@@ -64,3 +64,14 @@ cd build/
 make
 make install
 ####
+
+## Clipboard clipmenu
+cd /tmp/
+sudo git clone https://github.com/cdown/clipnotify
+cd clipnotify
+sudo make install
+cd .. && sudo git clone https://github.com/cdown/clipmenu/
+cd clipmenu/
+sudo make install
+clipmenud &
+## enable clipmenud and keybinding in i3 config!
