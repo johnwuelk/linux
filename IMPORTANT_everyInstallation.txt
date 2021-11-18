@@ -1,2 +1,6 @@
 in MEGAsync App
 REMOVE ".*" from excluded file list (settings -> advanced), so that hidden files/ dotfiles are synced as well!
+
+Also important - prevent MEGA from removing execute permissions on files:
+MEGA settings -> Syncs -> Permissions -> Owner Permissions -> Check/set Execute for owner
+if not set, cronjobs might fail because scripts cannot run!
